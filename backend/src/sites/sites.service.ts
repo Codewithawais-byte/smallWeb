@@ -1,19 +1,33 @@
-import { ConflictException, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
-import * as sanitizeHtml from 'sanitize-html';
-import { Site } from '../schemas/site.schema';
+import { ConflictException, Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model, Types } from "mongoose";
+import sanitizeHtml from "sanitize-html";
+import { Site } from "../schemas/site.schema";
 
 // Deliberately small allowlist. Authors can format a page; they
 // cannot script it, style-inject, or load external resources.
 const SANITIZE_OPTS: sanitizeHtml.IOptions = {
   allowedTags: [
-    'p', 'a', 'b', 'i', 'em', 'strong', 'br', 'ul', 'ol', 'li',
-    'h1', 'h2', 'h3', 'blockquote', 'code', 'pre',
+    "p",
+    "a",
+    "b",
+    "i",
+    "em",
+    "strong",
+    "br",
+    "ul",
+    "ol",
+    "li",
+    "h1",
+    "h2",
+    "h3",
+    "blockquote",
+    "code",
+    "pre",
   ],
-  allowedAttributes: { a: ['href'] },
-  allowedSchemes: ['http', 'https'],
-  disallowedTagsMode: 'discard',
+  allowedAttributes: { a: ["href"] },
+  allowedSchemes: ["http", "https"],
+  disallowedTagsMode: "discard",
 };
 
 @Injectable()
@@ -26,8 +40,8 @@ export class SitesService {
 
   async search(q: string) {
     return this.siteModel
-      .find({ $text: { $search: q } }, { score: { $meta: 'textScore' } })
-      .sort({ score: { $meta: 'textScore' } })
+      .find({ $text: { $search: q } }, { score: { $meta: "textScore" } })
+      .sort({ score: { $meta: "textScore" } })
       .limit(25);
   }
 
