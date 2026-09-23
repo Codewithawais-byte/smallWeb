@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { searchSites, type Site } from '@/lib/api';
+import { useState } from "react";
+import { searchSites, type Site } from "@/lib/api";
 
 export function SearchPanel({ onOpen }: { onOpen: (address: string) => void }) {
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState("");
   const [results, setResults] = useState<Site[] | null>(null);
 
   async function runSearch(e: React.FormEvent) {
@@ -34,15 +34,14 @@ export function SearchPanel({ onOpen }: { onOpen: (address: string) => void }) {
         <ul className="mt-3 space-y-1">
           {results.map((s) => (
             <li key={s._id}>
-              {/* Returning to search results after opening one is just
-                  another navigate() — the back/forward stack handles
-                  "search → return to results" for free. */}
               <button
                 onClick={() => onOpen(s.address)}
                 className="w-full text-left px-2 py-1.5 rounded hover:bg-gray-100"
               >
                 <div className="text-sm font-medium">{s.title}</div>
-                <div className="text-xs text-gray-400 font-mono">{s.address}</div>
+                <div className="text-xs text-gray-400 font-mono">
+                  {s.address}
+                </div>
               </button>
             </li>
           ))}

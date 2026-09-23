@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function AddressBar({
   current,
@@ -17,12 +17,9 @@ export function AddressBar({
   onBack: () => void;
   onForward: () => void;
 }) {
-  const [value, setValue] = useState(current ?? '');
+  const [value, setValue] = useState(current ?? "");
 
-  // Keep the input in sync when navigation happens some other way
-  // (a link click, back/forward) — the address bar always reflects
-  // where you currently are, not just what you last typed.
-  useEffect(() => setValue(current ?? ''), [current]);
+  useEffect(() => setValue(current ?? ""), [current]);
 
   return (
     <div className="flex items-center gap-2 border-b border-gray-200 bg-white px-3 py-2">

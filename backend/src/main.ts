@@ -2,6 +2,10 @@ import "dotenv/config";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 
+import dns from "node:dns/promises";
+
+dns.setServers(["1.1.1.1", "1.0.0.1", "8.8.8.8"]);
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({

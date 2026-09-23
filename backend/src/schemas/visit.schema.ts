@@ -11,8 +11,8 @@ export type VisitVia =
   | "publish";
 
 // A Visit is the atomic fact history is built from. It is written
-// even for addresses that don't resolve to a Site (dead links still
-// belong in your history — you did try to go there).
+// even for addresses that don't resolve to a site dead links still
+// belong in history we did try to go there.
 @Schema()
 export class Visit extends Document {
   @Prop({ type: Types.ObjectId, ref: "Person", required: true, index: true })

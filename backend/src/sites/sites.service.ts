@@ -4,8 +4,8 @@ import { Model, Types } from "mongoose";
 import sanitizeHtml from "sanitize-html";
 import { Site } from "../schemas/site.schema";
 
-// Deliberately small allowlist. Authors can format a page; they
-// cannot script it, style-inject, or load external resources.
+//  small allowlist authors can format a page cannot script
+
 const SANITIZE_OPTS: sanitizeHtml.IOptions = {
   allowedTags: [
     "p",

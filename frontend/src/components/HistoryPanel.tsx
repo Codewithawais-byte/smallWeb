@@ -1,13 +1,15 @@
-'use client';
+"use client";
 
-import type { Visit } from '@/lib/api';
+import type { Visit } from "@/lib/api";
 
 export function HistoryPanel({
   visits,
   onJump,
+  loading,
 }: {
   visits: Visit[];
   onJump: (address: string) => void;
+  loading: boolean;
 }) {
   return (
     <div className="h-full overflow-y-auto">
@@ -19,12 +21,13 @@ export function HistoryPanel({
           <li key={v._id}>
             <button
               onClick={() => onJump(v.address)}
+              disabled={loading}
               className="w-full text-left px-3 py-1.5 hover:bg-gray-100 flex flex-col"
             >
               <span className="text-sm font-mono truncate">{v.address}</span>
               <span className="text-xs text-gray-400">
                 {new Date(v.at).toLocaleTimeString()} · {v.via}
-                {!v.resolvedSiteId && ' · dead'}
+                {!v.resolvedSiteId && " · dead"}
               </span>
             </button>
           </li>
