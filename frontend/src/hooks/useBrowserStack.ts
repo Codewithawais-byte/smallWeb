@@ -13,9 +13,11 @@ export function useBrowserStack(initial: string | null = null) {
   const navigate = useCallback(
     (address: string) => {
       setStack((prev) => {
+        // New navigation truncates everything after the current index
         const next = prev.slice(0, index + 1);
         next.push(address);
         return next;
+        // Typing or clicking a new link after going back destroys the old forward history
       });
       setIndex((i) => i + 1);
     },

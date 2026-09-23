@@ -52,12 +52,12 @@ export default function Home() {
   }, [personId]);
 
   async function goTo(address: string, via: string) {
-    navigate(address);
+    navigate(address); // update stack
     if (!personId) return;
     setLoading(true);
     const [fetched] = await Promise.all([
       getSite(address),
-      recordVisit({ personId, address, via }),
+      recordVisit({ personId, address, via }), // write the history
     ]);
     setSite(fetched);
     setLoading(false);
